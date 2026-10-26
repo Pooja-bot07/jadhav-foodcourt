@@ -1,8 +1,3 @@
-
-const STALLS_API = "http://localhost:5000/api/stalls";
-const GALLERY_API = "http://localhost:5000/api/gallery";
-
-
 /* =========================================================
    MOBILE MENU
 ========================================================= */
@@ -37,12 +32,6 @@ if (menuToggle && mobileMenu) {
 
 }
 
-
-/* =========================================================
-   STALL DATA
-   Loaded from MongoDB
-========================================================= */
-
 let stalls = [];
 
 
@@ -76,85 +65,38 @@ const totalNumber =
 
 let currentIndex = 0;
 
+function loadStalls() {
+    stalls = [
+        {
+            name: "Shree Datta Bhel",
+            category: "FOOD STALL",
+            description: "Discover the flavours at Datta."
+        },
+        {
+            name: "Kharda Vadapav",
+            category: "FOOD STALL",
+            description: "Explore the menu at Kharda."
+        },
+        {
+            name: "Misal Katta",
+            category: "FOOD STALL",
+            description: "Enjoy a taste of Maharashtra."
+        },
+        {
+            name: "Saiba Amruttullya",
+            category: "FOOD STALL",
+            description: "Discover something delicious at Saiba."
+        },
+        {
+            name: "Benne Dosa",
+            category: "FOOD STALL",
+            description: "Menu coming soon."
+        },
+    ];
 
-/* =========================================================
-   LOAD STALLS FROM MONGODB
-========================================================= */
-
-async function loadStalls() {
-
-    try {
-
-        const response = await fetch(STALLS_API);
-
-        if (!response.ok) {
-            throw new Error("Failed to fetch stalls");
-        }
-
-        const databaseStalls = await response.json();
-
-
-        stalls = databaseStalls.filter(function (stall) {
-
-            return (
-                stall.type === "stall" &&
-                stall.available === true
-            );
-
-        });
-
-
-        if (stalls.length === 0) {
-
-            if (track) {
-
-                track.innerHTML = `
-                    <p style="
-                        text-align:center;
-                        width:100%;
-                        color:#777;
-                    ">
-                        No stalls available.
-                    </p>
-                `;
-
-            }
-
-            return;
-        }
-
-
-        currentIndex = 0;
-
-        createCards();
-
-        updateCarousel();
-
-
-    } catch (error) {
-
-        console.error(
-            "Error loading stalls:",
-            error
-        );
-
-
-        if (track) {
-
-            track.innerHTML = `
-                <p style="
-                    text-align:center;
-                    width:100%;
-                    color:#777;
-                ">
-                    Unable to load stalls.
-                </p>
-            `;
-
-        }
-
-    }
-
+    currentIndex = 0;
+    createCards();
+    updateCarousel();
 }
 
 
@@ -209,6 +151,9 @@ function createCards() {
                 "images/saiba-amrutatulaya-logo.jpg";
 
         }
+        else if (name.includes("benne dosa")) {
+    logoImage = "images/hero.jpg";
+}
 
 
         const card =
@@ -440,19 +385,13 @@ function updateInformation() {
         }
 
 
-        if (stallKey !== "") {
-
-            exploreLink.href =
-                `menu.html?stall=${stallKey}`;
-
-        }
-
-        else {
-
-            exploreLink.href =
-                "menu.html";
-
-        }
+        if (name.includes("benne dosa")) {
+    exploreLink.href = "menu.html?stall=benne-dosa";
+} else if (stallKey !== "") {
+    exploreLink.href = `menu.html?stall=${stallKey}`;
+} else {
+    exploreLink.href = "menu.html";
+}
 
     }
 
@@ -705,134 +644,200 @@ window.addEventListener(
 );
 
 
-/* =========================================================
-   PUBLIC GALLERY
-   LOADED FROM MONGODB
-========================================================= */
+function loadPublicGallery() {
+    const gallery = document.getElementById("publicGallery");
 
-async function loadPublicGallery() {
+    if (!gallery) return;
 
-    const gallery =
-        document.getElementById("publicGallery");
-
-
-    if (!gallery) {
-        return;
-    }
-
-
-    try {
-
-        const response =
-            await fetch(GALLERY_API);
-
-
-        if (!response.ok) {
-            throw new Error(
-                "Failed to load gallery"
-            );
+    const galleryImages = [
+        {
+            image: "images/hero.jpg",
+            title: "Welcome to Jadhav Food Court"
+        },
+        {
+            image: "images/Swamini.jpeg",
+            title: "Swamini Pure Veg"
+        },
+        {
+            image: "images/shree-datta-bhel-logo.jpg",
+            title: "Shree Datta Bhel"
+        },
+        {
+            image: "images/kharada-vada-pav-logo.jpg",
+            title: "Kharda Vada Pav"
+        },
+        {
+            image: "images/misal-katta-logo.jpg",
+            title: "Misal Katta"
+        },
+        {
+            image: "images/saiba-amrutatulaya-logo.jpg",
+            title: "Saiba Amrutatulaya"
+        },
+        {
+            image: "images/hero.jpg",
+            title: "Benne Dosa — Menu Coming Soon"
         }
+    ];
 
+    gallery.innerHTML = `
+        <div class="journey-gallery">
+            <div class="journey-feature">
+                <img class="journey-main-image" src="" alt="">
+                <div class="journey-image-shade"></div>
 
-        const images =
-            await response.json();
+                <div class="journey-feature-caption">
+                    <span class="journey-eyebrow">A CLOSER LOOK</span>
+                    <h3 class="journey-main-title"></h3>
+                </div>
 
+                <div class="journey-controls">
+                    <span class="journey-counter"></span>
 
-        if (!images || images.length === 0) {
+                    <div class="journey-arrows">
+                        <button class="journey-prev" type="button"
+                            aria-label="Previous photograph">←</button>
+                        <button class="journey-next" type="button"
+                            aria-label="Next photograph">→</button>
+                    </div>
+                </div>
+            </div>
 
-            gallery.innerHTML = `
-                <p class="gallery-empty">
-                    Gallery coming soon.
-                </p>
-            `;
+            <div class="journey-thumbnail-area">
+                <div class="journey-thumbnail-heading">
+                    <span>EXPLORE OUR SPACE</span>
+                    <span class="journey-hint">Select a photograph ↗</span>
+                </div>
+                <div class="journey-thumbnails"></div>
+            </div>
+        </div>
+    `;
 
-            return;
-        }
+    const mainImage = gallery.querySelector(".journey-main-image");
+    const mainTitle = gallery.querySelector(".journey-main-title");
+    const counter = gallery.querySelector(".journey-counter");
+    const thumbnails = gallery.querySelector(".journey-thumbnails");
 
+    let currentIndex = 0;
 
-        gallery.innerHTML =
-            images.map(
-                function (item, index) {
+    thumbnails.innerHTML = galleryImages.map((item, index) => `
+        <button class="journey-thumb"
+            type="button"
+            data-index="${index}"
+            aria-label="View ${item.title}">
+            <img src="${item.image}" alt="" loading="lazy">
+            <span>${String(index + 1).padStart(2, "0")}</span>
+            <strong>${item.title}</strong>
+        </button>
+    `).join("");
 
-                    let extraClass = "";
+    const thumbButtons = thumbnails.querySelectorAll(".journey-thumb");
 
+    function showImage(index) {
+        currentIndex =
+            (index + galleryImages.length) % galleryImages.length;
 
-                    if (index === 0) {
+        const item = galleryImages[currentIndex];
 
-                        extraClass =
-                            "gallery-large";
+        mainImage.classList.add("is-changing");
 
-                    }
+        mainImage.onload = function () {
+            mainImage.classList.remove("is-changing");
+        };
 
-                    else if (index === 3) {
+        mainImage.onerror = function () {
+            mainImage.classList.remove("is-changing");
+            mainImage.alt = "Image unavailable: " + item.title;
+        };
 
-                        extraClass =
-                            "gallery-wide";
+        mainImage.src = item.image;
+        mainImage.alt = item.title;
+        mainTitle.textContent = item.title;
+        counter.textContent =
+            String(currentIndex + 1).padStart(2, "0") +
+            " / " +
+            String(galleryImages.length).padStart(2, "0");
 
-                    }
+        thumbButtons.forEach((button, buttonIndex) => {
+            const active = buttonIndex === currentIndex;
+            button.classList.toggle("is-active", active);
+            button.setAttribute("aria-pressed", String(active));
+        });
 
-
-                    return `
-
-                        <div
-                            class="gallery-item ${extraClass}"
-                        >
-
-                            <img
-                                src="${item.image.startsWith("images/") ? item.image : "images/" + item.image}"
-                                alt="${item.title || "Jadhav Food Court"}"
-                                loading="lazy"
-                                onerror="this.style.display='none'"
-                            >
-
-
-                            <div class="gallery-caption">
-
-                                <span>
-                                    ${String(index + 1).padStart(2, "0")}
-                                </span>
-
-
-                                <strong>
-                                    ${item.title || "Jadhav Food Court"}
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }
-            ).join("");
-
+        thumbButtons[currentIndex].scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "nearest"
+        });
     }
 
+    thumbButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            showImage(Number(button.dataset.index));
+        });
+    });
 
-    catch (error) {
+    gallery.querySelector(".journey-prev").addEventListener("click", () => {
+        showImage(currentIndex - 1);
+    });
 
-        console.error(
-            "Error loading public gallery:",
-            error
-        );
+    gallery.querySelector(".journey-next").addEventListener("click", () => {
+        showImage(currentIndex + 1);
+    });
 
-
-        gallery.innerHTML = `
-            <p class="gallery-empty">
-                Unable to load gallery.
-            </p>
-        `;
-    }
-
+    showImage(0);
 }
-
 
 /* =========================================================
    INITIALIZE
 ========================================================= */
 
 loadStalls();
-
 startAutoSlide();
-
 loadPublicGallery();
+
+/* =========================================
+   ACCESSIBLE SCROLL REVEAL ANIMATIONS
+   ========================================= */
+
+(() => {
+    const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+        return;
+    }
+
+    const sections = document.querySelectorAll(
+        ".jfc-experience-intro, " +
+        ".jfc-stage, " +
+        ".jfc-info, " +
+        ".swamini-section, " +
+        ".catering-section, " +
+        ".gallery-section, " +
+        ".visit-content"
+    );
+
+    if (!sections.length) return;
+
+    sections.forEach(section => {
+        section.classList.add("jfc-reveal");
+    });
+
+    document.documentElement.classList.add("jfc-reveal-ready");
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("jfc-visible");
+                obs.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
+    });
+
+    sections.forEach(section => observer.observe(section));
+})();

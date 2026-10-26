@@ -1,14 +1,3 @@
-/* =========================================================
-   SWAMINI PURE VEG
-   JADHAV FOOD COURT — MENU PAGE
-   Premium / Warm / Editorial
-========================================================= */
-
-
-/* =========================================================
-   RESET
-========================================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -137,182 +126,282 @@ button {
     transform: translateX(-3px);
 }
 
-
-/* =========================================================
-   HERO
-========================================================= */
+/* ===== SWAMINI PREMIUM HERO ===== */
 
 .swamini-hero {
-    position: relative;
-
-    min-height: 570px;
-
-    display: flex;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
     align-items: center;
-    justify-content: center;
-
-    padding: 100px 20px;
-
+    gap: 55px;
+    min-height: 650px;
+    padding: 65px 8%;
+    background: #f7f0e5;
     overflow: hidden;
-
-    text-align: center;
-
-    background:
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(164, 119, 56, .10),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 85% 75%,
-            rgba(164, 119, 56, .08),
-            transparent 30%
-        ),
-        #f6f3ed;
 }
-
-
-/* DECORATIVE CIRCLE */
-
-.swamini-hero::before {
-    content: "";
-
-    position: absolute;
-
-    width: 580px;
-    height: 580px;
-
-    border: 1px solid rgba(164, 119, 56, .15);
-
-    border-radius: 50%;
-
-    top: -290px;
-    left: -170px;
-}
-
-.swamini-hero::after {
-    content: "";
-
-    position: absolute;
-
-    width: 430px;
-    height: 430px;
-
-    border: 1px solid rgba(164, 119, 56, .12);
-
-    border-radius: 50%;
-
-    right: -150px;
-    bottom: -220px;
-}
-
-
-/* HERO CONTENT */
 
 .swamini-hero-content {
+    max-width: 570px;
     position: relative;
     z-index: 2;
-
-    max-width: 850px;
 }
-
-
-/* KICKER */
 
 .swamini-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 13px;
-
-    color: #a47738;
-
+    display: inline-block;
+    color: #8b3f3d;
     font-size: 10px;
     font-weight: 700;
-
-    letter-spacing: 3px;
+    letter-spacing: 2.5px;
+    line-height: 1.8;
 }
 
-.swamini-kicker::before,
+.swamini-kicker::before {
+    content: "✦";
+    margin-right: 12px;
+    color: #b08a56;
+}
+
 .swamini-kicker::after {
-    content: "";
-
-    width: 32px;
-    height: 1px;
-
-    background: #a47738;
+    display: none;
 }
-
-
-/* HERO TITLE */
 
 .swamini-hero h1 {
-    margin-top: 24px;
-
+    margin-top: 25px;
     font-family: "Playfair Display", serif;
-
-    font-size: clamp(72px, 10vw, 125px);
-
-    line-height: .83;
-
+    font-size: clamp(62px, 6.5vw, 94px);
+    line-height: 0.98;
     font-weight: 500;
-
-    letter-spacing: -6px;
+    letter-spacing: -3.5px;
+    color: #201914;
 }
 
 .swamini-hero h1 em {
     display: block;
-
-    margin-top: 15px;
-
-    color: #a47738;
-
+    margin-top: 12px;
+    color: #8b3f3d;
     font-style: italic;
     font-weight: 400;
 }
 
-
-/* DESCRIPTION */
-
-.swamini-hero p {
-    max-width: 500px;
-
-    margin: 35px auto 0;
-
-    color: #777066;
-
-    font-size: 16px;
-
-    line-height: 1.8;
+.swamini-hero-content > p {
+    max-width: 440px;
+    margin-top: 26px;
+    color: #71665a;
+    font-size: 15px;
+    line-height: 1.9;
 }
 
+.swamini-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 13px;
+    margin-top: 32px;
+}
 
-/* MARATHI NOTE */
+.swamini-primary-btn,
+.swamini-secondary-btn {
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    padding: 14px 20px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease;
+}
+
+.swamini-primary-btn {
+    background: #632d32;
+    color: #fffaf2;
+}
+
+.swamini-primary-btn:hover {
+    background: #482126;
+    transform: translateY(-2px);
+}
+
+.swamini-primary-btn span {
+    font-size: 16px;
+}
+
+.swamini-secondary-btn {
+    border: 1px solid #d9c7b4;
+    color: #632d32;
+}
+
+.swamini-secondary-btn:hover {
+    background: #eee2d2;
+}
 
 .swamini-hero-note {
     display: flex;
     align-items: center;
-    justify-content: center;
-
     gap: 12px;
-
     margin-top: 32px;
-
-    color: #5f594f;
-
+    color: #735c51;
     font-size: 12px;
 }
 
 .swamini-hero-note span {
-    width: 28px;
+    width: 30px;
     height: 1px;
-
-    background: #a47738;
+    flex-shrink: 0;
+    background: #b08a56;
 }
 
 .swamini-hero-note strong {
     font-weight: 600;
 }
 
+/* Food photograph */
+
+.swamini-hero-image {
+    position: relative;
+    min-width: 0;
+    height: 490px;
+    isolation: isolate;
+}
+
+.swamini-hero-image > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 190px 190px 8px 8px;
+    box-shadow: 0 24px 60px rgba(65, 39, 24, 0.12);
+}
+
+/* Caption overlapping the photograph */
+
+.swamini-image-caption {
+    position: absolute;
+    z-index: 2;
+    left: -28px;
+    bottom: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    max-width: calc(100% - 5px);
+    padding: 19px 24px;
+    background: #fffaf2;
+    color: #632d32;
+    box-shadow: 0 12px 35px rgba(45, 30, 20, 0.15);
+}
+
+.swamini-image-caption span {
+    color: #9a754b;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.swamini-image-caption strong {
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.swamini-image-decoration {
+    position: absolute;
+    right: -16px;
+    top: 50%;
+    writing-mode: vertical-rl;
+    transform: translateY(-50%);
+    color: #8b3f3d;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+/* Tablet */
+
+@media (max-width: 1000px) {
+    .swamini-hero {
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 35px;
+        padding: 55px 6%;
+        min-height: 580px;
+    }
+
+    .swamini-hero-image {
+        height: 410px;
+    }
+
+    .swamini-hero h1 {
+        font-size: clamp(55px, 6.5vw, 76px);
+        letter-spacing: -2.5px;
+    }
+
+    .swamini-image-caption {
+        left: -18px;
+        padding: 16px 18px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .swamini-hero {
+        grid-template-columns: 1fr;
+        gap: 38px;
+        padding: 48px 7% 55px;
+    }
+
+    .swamini-hero h1 {
+        font-size: clamp(58px, 13vw, 76px);
+        letter-spacing: -2.5px;
+    }
+
+    .swamini-hero-content > p {
+        font-size: 14px;
+    }
+
+    .swamini-hero-actions {
+        gap: 10px;
+    }
+
+    .swamini-primary-btn,
+    .swamini-secondary-btn {
+        padding: 13px 14px;
+    }
+
+    .swamini-hero-image {
+        height: 350px;
+        margin: 0 10px 0 18px;
+    }
+
+    .swamini-hero-image > img {
+        border-radius: 150px 150px 7px 7px;
+    }
+
+    .swamini-image-caption {
+        left: -18px;
+        bottom: 18px;
+        padding: 14px 16px;
+    }
+
+    .swamini-image-caption strong {
+        font-size: 15px;
+    }
+
+    .swamini-image-decoration {
+        right: -14px;
+        font-size: 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .swamini-primary-btn,
+    .swamini-secondary-btn {
+        transition: none;
+    }
+}
 
 /* =========================================================
    MENU SECTION
@@ -1076,4 +1165,541 @@ button {
         font-size: 42px;
     }
 
+}
+
+/* =========================================
+   SWAMINI MENU — NEW RESPONSIVE CAROUSEL
+   ========================================= */
+
+#swaminiPublicMenu {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.sw-menu-layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 0.7fr) minmax(0, 1.8fr);
+  gap: clamp(28px, 5vw, 76px);
+  align-items: start;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.sw-menu-sidebar,
+.sw-menu-display {
+  min-width: 0;
+}
+
+.sw-menu-overline {
+  margin: 0 0 18px;
+  color: #a47738;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  line-height: 1.6;
+}
+
+.sw-menu-category-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(99, 45, 50, 0.2);
+}
+
+.sw-menu-category-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 20px 4px;
+  border: 0;
+  border-bottom: 1px solid rgba(99, 45, 50, 0.2);
+  background: transparent;
+  color: #632d32;
+  text-align: left;
+  font: inherit;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 180ms ease, padding 180ms ease;
+}
+
+.sw-menu-category-btn span:last-child {
+  color: #a47738;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.sw-menu-category-btn:hover,
+.sw-menu-category-btn.is-active {
+  color: #a47738;
+  padding-left: 10px;
+}
+
+.sw-menu-category-btn.is-active span:last-child,
+.sw-menu-category-btn:hover span:last-child {
+  opacity: 1;
+}
+
+.sw-menu-display-heading {
+  margin-bottom: 22px;
+}
+
+.sw-menu-display-heading h3 {
+  margin: 0 0 10px;
+  color: #632d32;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.sw-menu-display-heading > p:last-child {
+  max-width: 520px;
+  margin: 0;
+  color: #756c64;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.sw-menu-subcategories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 0 0 22px;
+}
+
+.sw-menu-subcategory-btn {
+  padding: 10px 17px;
+  border: 1px solid rgba(99, 45, 50, 0.25);
+  border-radius: 999px;
+  background: transparent;
+  color: #632d32;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.sw-menu-subcategory-btn.is-active,
+.sw-menu-subcategory-btn:hover {
+  border-color: #632d32;
+  background: #632d32;
+  color: #fffaf2;
+}
+
+.sw-menu-dish-card {
+  overflow: hidden;
+  border: 1px solid rgba(99, 45, 50, 0.13);
+  background: #fffdf8;
+  animation: swMenuFadeIn 240ms ease;
+}
+
+@keyframes swMenuFadeIn {
+  from { opacity: 0.65; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.sw-menu-dish-visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #eee5d7;
+}
+
+.sw-menu-dish-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sw-menu-image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background:
+    radial-gradient(ellipse at center, rgba(164, 119, 56, 0.12), transparent 65%),
+    #eee5d7;
+  color: #632d32;
+  text-align: center;
+}
+
+.sw-menu-image-placeholder > span {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: 5px;
+}
+
+.sw-menu-image-placeholder p {
+  margin: 8px 0 0;
+  color: #756c64;
+  font-size: 11px;
+}
+
+.sw-menu-photo-label {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  padding: 8px 10px;
+  background: rgba(255, 253, 248, 0.92);
+  color: #632d32;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.sw-menu-dish-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  padding: clamp(18px, 3vw, 30px);
+}
+
+.sw-menu-dish-copy {
+  min-width: 0;
+}
+
+.sw-menu-dish-category {
+  margin: 0 0 8px;
+  color: #a47738;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.sw-menu-dish-copy h4 {
+  margin: 0 0 8px;
+  color: #632d32;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(23px, 3vw, 34px);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.sw-menu-dish-description {
+  max-width: 420px;
+  margin: 0;
+  color: #756c64;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.sw-menu-dish-price {
+  flex-shrink: 0;
+  color: #a47738;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.sw-menu-carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 15px clamp(18px, 3vw, 30px);
+  border-top: 1px solid rgba(99, 45, 50, 0.13);
+}
+
+.sw-menu-counter {
+  color: #632d32;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.sw-menu-counter i {
+  padding: 0 5px;
+  color: #a47738;
+  font-style: normal;
+}
+
+.sw-menu-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.sw-menu-arrow {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(99, 45, 50, 0.3);
+  border-radius: 50%;
+  background: transparent;
+  color: #632d32;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.sw-menu-arrow:hover:not(:disabled) {
+  background: #632d32;
+  color: #fffaf2;
+}
+
+.sw-menu-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.sw-menu-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  padding: 32px 20px;
+  border: 1px solid rgba(99, 45, 50, 0.15);
+  background: #fffdf8;
+  text-align: center;
+}
+
+.sw-menu-empty-mark {
+  color: #a47738;
+  font-size: 28px;
+}
+
+.sw-menu-empty h4 {
+  margin: 14px 0 8px;
+  color: #632d32;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.sw-menu-empty p {
+  margin: 0;
+  color: #756c64;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.sw-menu-category-btn:focus-visible,
+.sw-menu-subcategory-btn:focus-visible,
+.sw-menu-arrow:focus-visible {
+  outline: 2px solid #a47738;
+  outline-offset: 4px;
+}
+
+@media (max-width: 760px) {
+  .sw-menu-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .sw-menu-overline {
+    margin-bottom: 12px;
+  }
+
+  .sw-menu-category-list {
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 2px 2px 12px;
+    border: 0;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sw-menu-category-btn {
+    flex: 0 0 auto;
+    width: auto;
+    gap: 10px;
+    padding: 11px 15px;
+    border: 1px solid rgba(99, 45, 50, 0.22);
+    border-radius: 999px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .sw-menu-category-btn:hover,
+  .sw-menu-category-btn.is-active {
+    padding: 11px 15px;
+    border-color: #632d32;
+    background: #632d32;
+    color: #fffaf2;
+  }
+
+  .sw-menu-category-btn span:last-child {
+    display: none;
+  }
+
+  .sw-menu-display-heading h3 {
+    font-size: 34px;
+  }
+
+  .sw-menu-dish-visual {
+    aspect-ratio: 4 / 3;
+  }
+
+  .sw-menu-dish-details {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px 16px;
+  }
+
+  .sw-menu-dish-copy h4 {
+    font-size: 25px;
+  }
+
+  .sw-menu-dish-description {
+    font-size: 12px;
+  }
+
+  .sw-menu-dish-price {
+    max-width: 110px;
+    font-size: 12px;
+  }
+
+  .sw-menu-carousel-controls {
+    padding: 12px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sw-menu-dish-card {
+    animation: none;
+  }
+
+  .sw-menu-category-btn,
+  .sw-menu-subcategory-btn,
+  .sw-menu-arrow {
+    transition: none;
+  }
+}
+
+/* =====================================
+   SWAMINI MENU — MOBILE IMPROVEMENTS
+===================================== */
+
+@media (max-width: 760px) {
+  .sw-menu-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .sw-menu-sidebar {
+    min-width: 0;
+  }
+
+  .sw-menu-category-list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 2px 2px 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .sw-menu-category-list::-webkit-scrollbar,
+  .sw-menu-subcategories::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sw-menu-category-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .sw-menu-display {
+    min-width: 0;
+  }
+
+  .sw-menu-display-heading {
+    margin-bottom: 18px;
+  }
+
+  .sw-menu-subcategories {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 2px 2px 12px;
+    margin-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .sw-menu-subcategory-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .sw-menu-dish-card {
+    min-width: 0;
+  }
+
+  .sw-menu-dish-visual {
+    min-width: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .sw-menu-dish-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sw-menu-dish-details {
+    gap: 16px;
+    padding: 20px 16px;
+  }
+
+  .sw-menu-dish-details h4 {
+    overflow-wrap: anywhere;
+  }
+
+  .sw-menu-carousel-controls {
+    padding: 0 16px 18px;
+  }
+}
+
+/* FIX: SWAMINI FEATURED FOOD IMAGE */
+
+#swaminiPublicMenu .swamini-dish-card,
+#swaminiPublicMenu .swamini-featured-dish,
+#swaminiPublicMenu .swamini-menu-card {
+    min-width: 0;
+}
+
+#swaminiPublicMenu .swamini-dish-image,
+#swaminiPublicMenu .swamini-menu-image,
+#swaminiPublicMenu .swamini-featured-image {
+    width: 100%;
+    height: 420px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background: #efe5d6;
+}
+
+#swaminiPublicMenu .swamini-dish-image img,
+#swaminiPublicMenu .swamini-menu-image img,
+#swaminiPublicMenu .swamini-featured-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+}
+
+@media (max-width: 768px) {
+    #swaminiPublicMenu .swamini-dish-image,
+    #swaminiPublicMenu .swamini-menu-image,
+    #swaminiPublicMenu .swamini-featured-image {
+        height: 280px;
+    }
 }

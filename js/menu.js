@@ -1,695 +1,241 @@
+
 /* =========================================================
    JADHAV FOOD COURT
-   MENU JAVASCRIPT
+   STATIC MENU JAVASCRIPT — NO BACKEND REQUIRED
 ========================================================= */
 
+/* STALL DATA */
+const stalls = [
+    {
+        name: " Shree Datta Bhel",
+        category: "FOOD STALL",
+        description: "Discover the flavours at Datta.",
+        available: true
+    },
+    {
+        name: "Kharda Vadapav",
+        category: "FOOD STALL",
+        description: "Explore the menu at Kharda.",
+        available: true
+    },
+    {
+        name: "Misal Katta",
+        category: "FOOD STALL",
+        description: "Enjoy a taste of Maharashtra.",
+        available: true
+    },
+    {
+        name: "Saiba Amruttulya",
+        category: "FOOD STALL",
+        description: "Discover something delicious at Saiba.",
+        available: true
+    },
+    {
+    name: "Benne Dosa",
+    category: "FOOD STALL",
+    description: "Our Benne Dosa menu is coming soon.",
+    available: true
+}
+];
 
-/* =========================================================
-   API
-========================================================= */
 
-const MENU_API = "http://localhost:5000/api/menu";
-const STALL_API = "http://localhost:5000/api/stalls";
+const menuItems = [
+    // DATTA
+    { stall: "Datta", name: "Bhel", price:50, image: "images/datta/bhel.jpg" },
+    { stall: "Datta", name: "Special Bhel",price:50, image: "images/datta/special_Bhel.jpg" },
+    { stall: "Datta", name: "Dahi Bhel",price:50, image: "images/datta/dahibhel.jpg" },
+    { stall: "Datta", name: "Shev Puri", price:50,image: "images/datta/shevpuri.jpg" },
+    { stall: "Datta", name: "Pani Puri", price:50,image: "images/datta/panipuri.jpg" },
+    { stall: "Datta", name: "Masala Puri",price:50, image: "images/datta/masala.jpg" },
+    { stall: "Datta", name: "Papdi", price:50,image: "images/datta/papdi.jpg" },
+    { stall: "Datta", name: "Farsana", image: "images/datta/farsana.jpg" },
+    { stall: "Datta", name: "Katori Chat", image: "images/datta/katorichat.jpg" },
+    { stall: "Datta", name: "Bhel Special", image: "images/datta/bhel2.jpg" },
 
+    // KHARDA
+    { stall: "kharda Vadapav", name: "Vada Pav", image: "images/kharda/vadapav1.jpg" },
+    { stall: "kharda Vadapav", name: "Bhaji", image: "images/kharda/bhaji.jpg" },
+    { stall: "kharda Vadapav", name: "Special Bhaji", image: "images/kharda/bhaji2.jpg" },
+    { stall: "kharda Vadapav", name: "Khichadi", image: "images/kharda/khichadi.jpg" },
+    { stall: "kharda Vadapav", name: "Samosa", image: "images/kharda/Samosa.jpg" },
+    { stall: "kharda Vadapav", name: "Patties", image: "images/kharda/patties.jpg" },
+    { stall: "kharda Vadapav", name: "Vada", image: "images/kharda/vada.jpg" },
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
+    // MISAL KATTA
+    { stall: "Misal Katta", name: "Misal", image: "images/misal/misal.jpg" },
+    { stall: "Misal Katta", name: "Special Misal", image: "images/misal/specialmisal.jpg" },
+    { stall: "Misal Katta", name: "Puri Misal", image: "images/misal/puri misal.jpg" },
+    { stall: "Misal Katta", name: "Pav Bhaji", image: "images/misal/pavbhaji.jpg" },
+    { stall: "Misal Katta", name: "French Fries", image: "images/misal/frenchfries.jpg" },
+    { stall: "Misal Katta", name: "Chole", image: "images/misal/chole.jpg" },
+    { stall: "Misal Katta", name: "Kadhi Vada", image: "images/misal/kadhivada.jpg" },
 
-const stallButtons =
-    document.getElementById("stallButtons");
+    // SAIBA
+    { stall: "Saiba", name: "Black Tea", image: "images/saiba/blacktea.jpg" },
+    { stall: "Saiba", name: "Green Tea", image: "images/saiba/greentea.jpg" },
+    { stall: "Saiba", name: "Lemon Tea", image: "images/saiba/lemontea.jpg" },
+    { stall: "Saiba", name: "Hot Coffee", image: "images/saiba/hotcoffee.jpg" },
+    { stall: "Saiba", name: "Cold Coffee", image: "images/saiba/coldcoffee.jpg" },
+    { stall: "Saiba", name: "Cream Roll", image: "images/saiba/creamroll.jpg" },
+    { stall: "Saiba", name: "Cake", image: "images/saiba/cake.jpg" },
+    { stall: "Saiba", name: "Taak", image: "images/saiba/taak.jpg" }
+];
 
-const stallName =
-    document.getElementById("stallName");
-
-const stallCategory =
-    document.getElementById("stallCategory");
-
-const stallDescription =
-    document.getElementById("stallDescription");
-
-const stallNumber =
-    document.getElementById("stallNumber");
-
-const menuGrid =
-    document.getElementById("menuGrid");
-
-
-/* =========================================================
-   STALL DATA
-========================================================= */
-
-let stalls = [];
-
-let menuItems = [];
 
 let selectedStall = null;
 
+/* PAGE ELEMENTS */
+const stallButtons = document.getElementById("stallButtons");
+const stallName = document.getElementById("stallName");
+const stallCategory = document.getElementById("stallCategory");
+const stallDescription = document.getElementById("stallDescription");
+const stallNumber = document.getElementById("stallNumber");
+const menuGrid = document.getElementById("menuGrid");
 
-/* =========================================================
-   GET STALL KEY
-========================================================= */
-
+/* IDENTIFY STALL */
 function getStallKey(name) {
+    const value = (name || "").toLowerCase().trim();
 
-    const value =
-        (name || "").toLowerCase().trim();
+    if (value.includes("datta")) return "datta";
 
+    if (value.includes("kharada") || value.includes("kharda")) {
+    return "kharda";
+}
 
-    if (value.includes("datta")) {
-        return "datta";
-    }
+    if (value.includes("misal")) return "misal";
 
-
-    if (
-        value.includes("kharada") ||
-        value.includes("kharda")
-    ) {
-        return "kharda";
-    }
-
-
-    if (value.includes("misal")) {
-        return "misal";
-    }
-
-
-    if (value.includes("saiba")) {
-        return "saiba";
-    }
-
-
+    if (value.includes("saiba")) return "saiba";
+    if (value.includes("benne dosa")) return "benne-dosa";
     return null;
-
 }
 
-
-/* =========================================================
-   GET STALL FROM URL
-========================================================= */
-
-const urlParams =
-    new URLSearchParams(window.location.search);
-
-const urlStall =
-    urlParams.get("stall");
-
-
-/* =========================================================
-   LOAD STALLS
-========================================================= */
-
-async function loadStalls() {
-
-    try {
-
-        const response =
-            await fetch(STALL_API);
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Failed to load stalls"
-            );
-
-        }
-
-
-        const databaseStalls =
-            await response.json();
-
-
-        /*
-         * Only display:
-         *
-         * type = stall
-         * available = true
-         *
-         * Swamini is a restaurant,
-         * so it stays separate.
-         */
-
-        stalls =
-            databaseStalls.filter(function (stall) {
-
-                return (
-                    stall.type === "stall" &&
-                    stall.available === true
-                );
-
-            });
-
-
-        if (stalls.length === 0) {
-
-            stallButtons.innerHTML = `
-                <p>
-                    No stalls available.
-                </p>
-            `;
-
-            return;
-
-        }
-
-
-        /*
-         * Determine selected stall
-         */
-
-        if (urlStall) {
-
-            const found =
-                stalls.find(function (stall) {
-
-                    return (
-                        getStallKey(stall.name)
-                        === urlStall
-                    );
-
-                });
-
-
-            if (found) {
-
-                selectedStall =
-                    getStallKey(found.name);
-
-            }
-
-        }
-
-
-        /*
-         * Default stall
-         */
-
-        if (!selectedStall) {
-
-            selectedStall =
-                getStallKey(stalls[0].name);
-
-        }
-
-
-        createStallButtons();
-
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "Error loading stalls:",
-            error
-        );
-
-
-        stallButtons.innerHTML = `
-            <p>
-                Unable to load stalls.
-            </p>
-        `;
-
-    }
-
-}
-
-
-/* =========================================================
-   CREATE STALL BUTTONS
-========================================================= */
+/* READ STALL FROM URL */
+const urlParams = new URLSearchParams(window.location.search);
+const urlStall = urlParams.get("stall");
 
 function createStallButtons() {
+    if (!stallButtons) return;
 
     stallButtons.innerHTML = "";
 
+    stalls.forEach((stall) => {
+        const key = getStallKey(stall.name);
+        if (!key) return;
 
-    stalls.forEach(function (stall, index) {
-
-
-        const key =
-            getStallKey(stall.name);
-
-
-        if (!key) {
-            return;
-        }
-
-
-        const button =
-            document.createElement("button");
-
-
-        button.className =
-            "stall-button";
-
-
-        button.dataset.stall =
-            key;
-
-
-        button.textContent =
-            stall.name;
-
+        const button = document.createElement("button");
+        button.className = "stall-button";
+        button.dataset.stall = key;
+        button.textContent = stall.name;
 
         if (key === selectedStall) {
-
             button.classList.add("active");
-
         }
 
-
-        button.addEventListener(
-            "click",
-            function () {
-
-                selectStall(key);
-
-            }
-        );
-
-
+        button.addEventListener("click", () => selectStall(key));
         stallButtons.appendChild(button);
-
     });
 
-
     displayStall(selectedStall);
-
 }
 
-
-/* =========================================================
-   SELECT STALL
-========================================================= */
-
 function selectStall(stallKey) {
+    const stall = stalls.find(item => getStallKey(item.name) === stallKey);
+    if (!stall) return;
 
-    const stall =
-        stalls.find(function (item) {
+    selectedStall = stallKey;
 
-            return (
-                getStallKey(item.name)
-                === stallKey
-            );
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set("stall", stallKey);
+    window.history.replaceState({}, "", newUrl);
 
-        });
-
-
-    if (!stall) {
-        return;
-    }
-
-
-    selectedStall =
-        stallKey;
-
-
-    /*
-     * Update URL
-     */
-
-    const newUrl =
-        window.location.pathname +
-        "?stall=" +
-        stallKey;
-
-
-    window.history.replaceState(
-        {},
-        "",
-        newUrl
-    );
-
-
-    /*
-     * Update active button
-     */
-
-    document
-        .querySelectorAll(".stall-button")
-        .forEach(function (button) {
-
-            button.classList.remove("active");
-
-
-            if (
-                button.dataset.stall
-                === stallKey
-            ) {
-
-                button.classList.add("active");
-
-            }
-
-        });
-
+    document.querySelectorAll(".stall-button").forEach(button => {
+        button.classList.toggle("active", button.dataset.stall === stallKey);
+    });
 
     displayStall(stallKey);
 
-
-    /*
-     * Scroll to menu
-     */
-
-    const selectedSection =
-        document.getElementById(
-            "selectedStall"
-        );
-
-
-    if (selectedSection) {
-
-        selectedSection.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-    }
-
+    document.getElementById("selectedStall")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 }
-
-
-/* =========================================================
-   DISPLAY STALL
-========================================================= */
 
 function displayStall(stallKey) {
+    const stall = stalls.find(item => getStallKey(item.name) === stallKey);
+    if (!stall) return;
 
-    const stall =
-        stalls.find(function (item) {
+    if (stallName) stallName.textContent = stall.name;
+    if (stallCategory) stallCategory.textContent = stall.category;
+    if (stallDescription) stallDescription.textContent = stall.description;
 
-            return (
-                getStallKey(item.name)
-                === stallKey
-            );
+    const index = stalls.findIndex(item => getStallKey(item.name) === stallKey);
+    if (stallNumber) stallNumber.textContent = String(index + 1).padStart(2, "0");
 
-        });
-
-
-    if (!stall) {
-        return;
-    }
-
-
-    /*
-     * Stall name
-     */
-
-    stallName.textContent =
-        stall.name;
-
-
-    /*
-     * Category
-     */
-
-    stallCategory.textContent =
-        stall.category || "MENU";
-
-
-    /*
-     * Description
-     */
-
-    stallDescription.textContent =
-        stall.description || "";
-
-
-    /*
-     * Stall number
-     */
-
-    const index =
-        stalls.findIndex(function (item) {
-
-            return (
-                getStallKey(item.name)
-                === stallKey
-            );
-
-        });
-
-
-    stallNumber.textContent =
-        String(index + 1).padStart(2, "0");
-
-
-    /*
-     * Filter menu items
-     */
-
-    const items =
-        menuItems.filter(function (item) {
-
-            return (
-                getStallKey(item.stall)
-                === stallKey
-            );
-
-        });
-
-
+    const items = menuItems.filter(item => getStallKey(item.stall) === stallKey);
     renderMenuItems(items);
-
 }
 
-
-/* =========================================================
-   RENDER MENU ITEMS
-========================================================= */
-
 function renderMenuItems(items) {
+    if (!menuGrid) return;
 
     menuGrid.innerHTML = "";
 
-
-    if (!items || items.length === 0) {
-
+    if (!items.length) {
         menuGrid.innerHTML = `
-
             <div class="menu-empty">
-
-                <h3>
-                    Menu coming soon
-                </h3>
-
-                <p>
-                    We're preparing something delicious.
-                </p>
-
+                <h3>Menu coming soon</h3>
+                <p>We're preparing something delicious. Please ask at the counter for today's menu.</p>
             </div>
-
         `;
-
         return;
-
     }
 
+    items.forEach((item, index) => {
+        const card = document.createElement("article");
+        card.className = "menu-item";
+        card.style.animationDelay = `${index * 0.08}s`;
 
-    items.forEach(function (item, index) {
-
-
-        const card =
-            document.createElement("article");
-
-
-        card.className =
-            "menu-item";
-
-
-        card.style.animationDelay =
-            (index * 0.08) + "s";
-
-
-        /*
-         * Image fallback
-         */
-
-        const image =
-            item.image &&
-            item.image.trim() !== ""
-
-                ? item.image
-
-                : "images/hero.jpg";
-
+        const image = item.image || "images/hero.jpg";
 
         card.innerHTML = `
-
             <div class="menu-item-image">
-
-                <img
-                    src="${image}"
-                    alt="${item.name}"
-                    loading="lazy"
-                    onerror="this.src='images/hero.jpg'"
-                >
-
+                <img src="${image}" alt="${item.name}" loading="lazy">
             </div>
-
-
             <div class="menu-item-content">
-
-                <h3>
-                    ${item.name}
-                </h3>
-
-
-                ${
-                    item.description
-                        ? `
-                            <p class="menu-item-description">
-                                ${item.description}
-                            </p>
-                          `
-                        : ""
-                }
-
-
+                <h3>${item.name}</h3>
+                ${item.description ? `<p class="menu-item-description">${item.description}</p>` : ""}
                 <div class="menu-item-bottom">
-
-                    <span class="menu-price">
-                        ₹${item.price}
-                    </span>
-
-
-                    <span class="menu-item-number">
-
-                        ${String(index + 1)
-                            .padStart(2, "0")}
-
-                    </span>
-
+                    <span class="menu-price">${item.price != null ? `₹${item.price}` : "Ask at counter"}</span>
+                    <span class="menu-item-number">${String(index + 1).padStart(2, "0")}</span>
                 </div>
-
             </div>
-
         `;
 
+        const img = card.querySelector("img");
+        img.addEventListener("error", () => {
+            img.src = "images/hero.jpg";
+        }, { once: true });
 
         menuGrid.appendChild(card);
-
     });
-
 }
 
-
-/* =========================================================
-   LOAD MENU FROM MONGODB
-========================================================= */
-
-async function loadMenu() {
-
-    try {
-
-        console.log(
-            "Loading menu from MongoDB..."
-        );
-
-
-        const response =
-            await fetch(MENU_API);
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Failed to load menu"
-            );
-
-        }
-
-
-        const databaseMenu =
-            await response.json();
-
-
-        /*
-         * Only available items
-         */
-
-        menuItems =
-            databaseMenu.filter(function (item) {
-
-                return item.available === true;
-
-            });
-
-
-        console.log(
-            "Menu loaded:",
-            menuItems
-        );
-
-
-        /*
-         * Display selected stall
-         */
-
-        if (selectedStall) {
-
-            displayStall(selectedStall);
-
-        }
-
+/* START PAGE */
+function initializeMenu() {
+    if (!stallButtons || !menuGrid) {
+        console.warn("Menu page elements were not found.");
+        return;
     }
 
-    catch (error) {
+    const requestedStall = stalls.find(
+        stall => getStallKey(stall.name) === urlStall
+    );
 
-        console.error(
-            "Error loading menu:",
-            error
-        );
+    selectedStall = requestedStall
+        ? getStallKey(requestedStall.name)
+        : getStallKey(stalls[0].name);
 
-
-        menuGrid.innerHTML = `
-
-            <div class="menu-empty">
-
-                <h3>
-                    Unable to load menu
-                </h3>
-
-                <p>
-                    Please try again later.
-                </p>
-
-            </div>
-
-        `;
-
-    }
-
+    createStallButtons();
 }
-
-
-/* =========================================================
-   INITIALIZE PAGE
-========================================================= */
-
-async function initializeMenu() {
-
-    /*
-     * First load stalls
-     */
-
-    await loadStalls();
-
-
-    /*
-     * Then load menu
-     */
-
-    await loadMenu();
-
-}
-
-
-/* =========================================================
-   START
-========================================================= */
 
 initializeMenu();

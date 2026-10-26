@@ -2,9 +2,6 @@
    JADHAV FOOD COURT — MENU PAGE
    Premium / Minimal / Editorial Style
 ========================================================= */
-
-
-
 * {
     margin: 0;
     padding: 0;
@@ -1514,5 +1511,13 @@ button {
         margin-top: 30px;
     }
 
+}
+
+.menu-location {
+    max-width: 620px;
+    margin: 12px auto 0;
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.8;
 }
 
