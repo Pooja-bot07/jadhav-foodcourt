@@ -764,11 +764,20 @@ function loadPublicGallery() {
             button.setAttribute("aria-pressed", String(active));
         });
 
-        thumbButtons[currentIndex].scrollIntoView({
-            behavior: "smooth",
-            block: "nearest",
-            inline: "nearest"
-        });
+       // Keep the selected thumbnail visible without scrolling the page.
+const activeThumbnail = thumbButtons[currentIndex];
+const thumbnailArea = gallery.querySelector(".journey-thumbnail-area");
+
+if (activeThumbnail && thumbnailArea) {
+    const thumbRect = activeThumbnail.getBoundingClientRect();
+    const areaRect = thumbnailArea.getBoundingClientRect();
+
+    if (thumbRect.left < areaRect.left) {
+        thumbnailArea.scrollLeft -= areaRect.left - thumbRect.left;
+    } else if (thumbRect.right > areaRect.right) {
+        thumbnailArea.scrollLeft += thumbRect.right - areaRect.right;
+    }
+}
     }
 
     thumbButtons.forEach((button) => {

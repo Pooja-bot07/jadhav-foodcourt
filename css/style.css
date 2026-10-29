@@ -2259,6 +2259,126 @@ button {
 }
 
 
+/* =========================================
+   MOBILE HERO FIX
+========================================= */
+
+@media (max-width: 768px) {
+
+    .hero {
+        min-height: 100svh;
+        min-height: 100vh;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    /* Hero image */
+    .hero-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    /* Dark overlay for text readability */
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+    }
+
+    /* Hero text positioning */
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 100%;
+        padding: 100px 24px 90px;
+        margin: 0;
+        gap: 0;
+    }
+
+    .hero-label {
+        margin-bottom: 18px;
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .hero-content h1 {
+        margin: 0 0 14px;
+        font-size: clamp(42px, 11vw, 58px);
+        line-height: 1.05;
+    }
+
+    .hero-marathi {
+        margin: 0 0 12px;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .hero-description {
+        margin: 0 0 22px;
+        max-width: 340px;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 0;
+    }
+
+    .hero-primary,
+    .hero-secondary {
+        margin: 0;
+    }
+
+    /* Bottom labels */
+    .hero-bottom {
+        position: absolute;
+        z-index: 3;
+        bottom: 22px;
+        left: 24px;
+        right: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .hero-scroll {
+        display: none;
+    }
+}
+
+/* Smaller mobile screens */
+@media (max-width: 380px) {
+
+    .hero-content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 40px;
+    }
+
+    .hero-bottom {
+        left: 20px;
+        right: 20px;
+    }
+}
+
 /* =========================================================
    MOBILE
 ========================================================= */
@@ -3052,6 +3172,131 @@ button {
     .faq-section .section-heading,
     .faq-section .faq-list details {
         animation: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero {
+        height: auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: #f4efe4;
+        color: #263b2c;
+    }
+
+    .hero-image {
+        position: relative;
+        inset: auto;
+        order: 0;
+        width: 100%;
+        height: 42svh;
+        min-height: 260px;
+        max-height: 360px;
+        overflow: hidden;
+    }
+
+    .hero-image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 70%;
+    }
+
+    .hero-overlay {
+        display: none;
+    }
+
+    .hero-content {
+        order: 1;
+        position: relative;
+        inset: auto;
+        width: 100%;
+        max-width: none;
+        min-height: 0;
+        margin: 0;
+        padding: 30px 24px 32px;
+        box-sizing: border-box;
+        transform: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        color: #263b2c;
+    }
+
+    .hero-label {
+        margin: 0 0 16px;
+        font-size: 10px;
+        letter-spacing: 1.6px;
+        color: #647454;
+    }
+
+    .hero-content h1 {
+        margin: 0 0 16px;
+        width: 100%;
+        font-size: clamp(36px, 9vw, 46px);
+        line-height: 1.02;
+        letter-spacing: -1.2px;
+        color: #263b2c;
+    }
+
+    .hero-content h1 em {
+        display: block;
+        margin-top: 4px;
+        color: #b3833f;
+        font-size: 0.9em;
+        line-height: 1.08;
+    }
+
+    .hero-marathi {
+        margin: 0 0 10px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #263b2c;
+    }
+
+    .hero-description {
+        max-width: 100%;
+        margin: 0 0 22px;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #55584e;
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        width: 100%;
+        margin: 0;
+    }
+
+    .hero-primary {
+        background: #263b2c;
+        color: #fff;
+    }
+
+    .hero-secondary {
+        color: #263b2c;
+        border-color: #263b2c;
+    }
+
+    .hero-bottom {
+        order: 2;
+        position: relative;
+        inset: auto;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 24px 20px;
+        margin: 0;
+        color: #263b2c;
+    }
+
+    .hero-scroll {
+        display: none;
     }
 }
 

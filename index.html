@@ -197,20 +197,13 @@
      HERO
 ====================================================== -->
 
-<section
-    class="hero"
-    id="home"
->
-
+<section class="hero" id="home">
 
     <!-- HERO IMAGE -->
 
     <div class="hero-image">
 
-        <img
-            src="images/hero.jpg"
-            alt="Jadhav Food Court"
-        >
+        <img src="images/hero.jpg" alt="Jadhav Food Court"  >
 
     </div>
 
@@ -236,12 +229,12 @@
 
         <h1>
 
-            Come hungry.
+            Many Flavours.
 
             <br>
 
             <em>
-                Leave happy.
+                One destination.
             </em>
 
         </h1>
@@ -906,7 +899,17 @@
 
 <script src="js/script.js"></script>
 
+<script>
+    if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+    }
 
+    window.addEventListener("pageshow", function (event) {
+        if (!window.location.hash) {
+            window.scrollTo(0, 0);
+        }
+    });
+</script>
 </body>
 
 </html>
