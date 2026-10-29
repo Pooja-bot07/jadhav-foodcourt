@@ -2,37 +2,67 @@
    MOBILE MENU
 ========================================================= */
 
+
 const menuToggle = document.getElementById("menuToggle");
 const mobileMenu = document.getElementById("mobileMenu");
+const mobileMenuClose = document.getElementById("mobileMenuClose");
+
+function openMobileMenu() {
+    if (!mobileMenu) return;
+
+    mobileMenu.classList.add("active");
+    mobileMenu.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    if (menuToggle) {
+        menuToggle.setAttribute("aria-expanded", "true");
+    }
+
+    mobileMenuClose?.focus();
+}
+
+function closeMobileMenu() {
+    if (!mobileMenu) return;
+
+    mobileMenu.classList.remove("active");
+    mobileMenu.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+
+    if (menuToggle) {
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.focus();
+    }
+}
 
 if (menuToggle && mobileMenu) {
-
     menuToggle.addEventListener("click", function () {
-
-        if (mobileMenu.style.display === "flex") {
-            mobileMenu.style.display = "none";
+        if (mobileMenu.classList.contains("active")) {
+            closeMobileMenu();
         } else {
-            mobileMenu.style.display = "flex";
+            openMobileMenu();
         }
-
     });
 
+    mobileMenuClose?.addEventListener("click", closeMobileMenu);
 
     const mobileLinks = mobileMenu.querySelectorAll("a");
 
     mobileLinks.forEach(function (link) {
-
-        link.addEventListener("click", function () {
-
-            mobileMenu.style.display = "none";
-
-        });
-
+        link.addEventListener("click", closeMobileMenu);
     });
 
+    document.addEventListener("keydown", function (event) {
+        if (
+            event.key === "Escape" &&
+            mobileMenu.classList.contains("active")
+        ) {
+            closeMobileMenu();
+        }
+    });
 }
 
 let stalls = [];
+
 
 
 /* =========================================================
@@ -70,12 +100,12 @@ function loadStalls() {
         {
             name: "Shree Datta Bhel",
             category: "FOOD STALL",
-            description: "Discover the flavours at Datta."
+            description: "Discover the flavours at Datta Bhel."
         },
         {
             name: "Kharda Vadapav",
             category: "FOOD STALL",
-            description: "Explore the menu at Kharda."
+            description: "Explore the menu at Kharda Vadapavv."
         },
         {
             name: "Misal Katta",
@@ -85,13 +115,13 @@ function loadStalls() {
         {
             name: "Saiba Amruttullya",
             category: "FOOD STALL",
-            description: "Discover something delicious at Saiba."
+            description: "Discover something delicious at Saiba Amruttullya."
         },
         {
-            name: "Benne Dosa",
-            category: "FOOD STALL",
-            description: "Menu coming soon."
-        },
+    name: "Benne Dosa",
+    category: "SOUTH INDIAN",
+    description: "Enjoy delicious, buttery Benne Dosa with authentic South Indian flavours."
+},
     ];
 
     currentIndex = 0;
@@ -151,8 +181,8 @@ function createCards() {
                 "images/saiba-amrutatulaya-logo.jpg";
 
         }
-        else if (name.includes("benne dosa")) {
-    logoImage = "images/hero.jpg";
+    else if (name.includes("benne dosa")) {
+    logoImage = "images/Geetham Veg _ AUTHENTIC INDIAN VEGETARIAN CUISINE.jpg";
 }
 
 
@@ -675,8 +705,8 @@ function loadPublicGallery() {
             title: "Saiba Amrutatulaya"
         },
         {
-            image: "images/hero.jpg",
-            title: "Benne Dosa — Menu Coming Soon"
+            image: "images/Geetham Veg _ AUTHENTIC INDIAN VEGETARIAN CUISINE.jpg",
+            title: "Benne Dosa"
         }
     ];
 

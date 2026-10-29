@@ -33,7 +33,7 @@ const stalls = [
     {
     name: "Benne Dosa",
     category: "FOOD STALL",
-    description: "Our Benne Dosa menu is coming soon.",
+    description: "Explore south-Indian menu at our stall",
     available: true
 }
 ];
@@ -78,7 +78,22 @@ const menuItems = [
     { stall: "Saiba", name: "Cold Coffee", image: "images/saiba/coldcoffee.jpg" },
     { stall: "Saiba", name: "Cream Roll", image: "images/saiba/creamroll.jpg" },
     { stall: "Saiba", name: "Cake", image: "images/saiba/cake.jpg" },
-    { stall: "Saiba", name: "Taak", image: "images/saiba/taak.jpg" }
+    { stall: "Saiba", name: "Taak", image: "images/saiba/taak.jpg" },
+
+    { stall: "Benne Dosa", name: "Thatte Idli", price:60, image: "images/Benne/thatte_idli.jpg" },
+    { stall: "Benne Dosa", name: "Mysore Dosa", price:180,image: "images/Benne/mysore.jpg." },
+    { stall: "Benne Dosa", name: "Medu Vada", price:55,image: "images/Benne/medu-vada.jpg" },
+    { stall: "Benne Dosa", name: "Cut Dosa",price:160, image: "images/Benne/cut_dosa.jpg" },
+    { stall: "Benne Dosa", name: "Benne Masala Dosa",price:150, image: "images/Benne/Masala_Dosa.jpg" },
+    { stall: "Benne Dosa", name: "Plain Dosa",price:105, image: "images/Benne/plain_dosa.jpg" },
+    { stall: "Benne Dosa", name: "Filter Coffee", price:40,image: "images/Benne/filtercoffee.jpg" },
+    { stall: "Benne Dosa", name: "Plain Masala Dosa",price:100, image: "images/Benne/Benne_plainDosa.jpg" },
+    { stall: "Benne Dosa", name: "Paneer Masala Dosa",price:160, image: "images/Benne/paneer_masala_dosa.jpg" },
+    { stall: "Benne Dosa", name: "Idli", price:60,image: "images/Benne/idli.jpg" },
+    { stall: "Benne Dosa", name: "Benne Palak Dosa", price:154,image: "images/Benne/palak_dosa.jpg" },    
+    { stall: "Benne Dosa", name: "Ghee pudi Thatte Idli", price:75,image: "images/Benne/masala idli.jpg"},
+    { stall: "Benne Dosa", name: "Ghee pudi Masala Dosa", price:75,image: "images/Benne/Ghee_pudi.jpg"},
+
 ];
 
 
